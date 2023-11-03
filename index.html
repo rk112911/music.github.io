@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Registration Form in HTML CSS</title>
+   
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+   <form name="submit-to-google-sheet">
+      <label>name:</label><br>
+      <input type="text" name="name"><br>
+      <label>email:</label><br>
+      <input type="email" name="email"><br>
+      <label>Choose Your Game:</label><br>
+      <input type="radio" name="Choose Your Game" value="KHO KHO"><label>KHO-KHO</label>
+      <input type="radio" name="Choose Your Game" value="BASKETBALL"><label>BASKETBALL</label>
+      <input type="radio" name="Choose Your Game" value="Taekwondo"><label>Taekwondo</label>
+      <input type="radio" name="Choose Your Game" value="TENIQUITE"><label>TENIQUITE</label>
+      <input type="radio" name="Choose Your Game" value="BADMINTON"><label>BADMINTON</label><br>
+      <label><a href="http://localhost/loginsystem/welcome.php">gender:</a></label><br>
+      <input type="radio" name="gender" value="male"><label>male</label>
+      <input type="radio" name="gender" value="female"><label>fmale</label><br><br>
+      
+
+      <label>message</label><br>
+      <textarea name="message" cols="10">
+
+      </textarea><br>
+     <input type="submit" name="submit"><br>
+
+          <span id="success"></span>
+
+
+
+
+   </form>
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycby8k8UTlcxEHJg9XyZttcgqccx5nBTWhlnOJygY8iloohkL5z6FIzqaMHn-ODK2kF1o/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const success = document.getElementById('success')
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        success.innerHTML="data successfully submit"
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+  </body>
+</html>
